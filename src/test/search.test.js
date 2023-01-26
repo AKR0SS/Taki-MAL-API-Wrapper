@@ -1,6 +1,7 @@
 const { setClientKey, getInfoFromName, search } = require('../taki/index.js');
-const { CLIENT_KEY } = require('../../config.json');
+require("dotenv").config();
 
+const CLIENT_KEY = process.env.CLIENT_KEY;
 const ANIME_NAME = 'Hibike! Euphonium';
 
 // Exception Testing
