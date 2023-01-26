@@ -1,6 +1,7 @@
 const { setClientKey, getInfoFromURL, getInfoFromId } = require('../taki/index.js');
-const { CLIENT_KEY } = require('../../config.json');
+require("dotenv").config();
 
+const CLIENT_KEY = process.env.CLIENT_KEY;
 const testAnimeId = 27989;
 const testAnimeURL = 'https://myanimelist.net/anime/27989/Hibike_Euphonium';
 
