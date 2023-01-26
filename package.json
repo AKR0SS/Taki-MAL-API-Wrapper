@@ -1,4 +1,9 @@
 {
+  "name": "taki",
+  "version": "1.0.0",
+  "description": "An easy to use, fast MAL API wrapper",
+  "main": "src/taki/index.js",
+  "license": "MIT",
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage"
