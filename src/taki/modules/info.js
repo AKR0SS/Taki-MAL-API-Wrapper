@@ -1,5 +1,5 @@
 // queries for all avaliable elements within an anime object from MAL
-const FIELDS = 'id,title,main_picture,alternative_titles,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,nsfw,created_at,updated_at,media_type,status,genres,my_list_status,num_episodes,start_season,broadcast,source,average_episode_duration,rating,pictures,background,related_anime,related_manga,recommendations,studios,statistics';
+const FIELDS = 'id,title,main_picture,alternative_titles,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,created_at,updated_at,media_type,status,genres,num_episodes,start_season,broadcast,source,average_episode_duration,rating,pictures,background,related_anime,related_manga,recommendations,studios,statistics';
 
 let CLIENT_KEY;
 
@@ -20,7 +20,7 @@ async function getInfo(animeId) {
 }
 
 /**
- * A key is needed to fetch MAL API data such as specific Anime Info
+ * Your Client Key provided from MAL to fetch API data
  * @param {string} key
  */
 function setClientKey(key) {
@@ -38,7 +38,7 @@ function checkClientKey() {
 
 /**
  * Promises a json data object provided an anime's ID
- * @param {int} AnimeId
+ * @param {number} AnimeId
  * @returns {Promise} `json data object`
  */
 function getInfoFromId(animeId) {
