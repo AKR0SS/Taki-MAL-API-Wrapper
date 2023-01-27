@@ -9,7 +9,7 @@
 <br></br>
 </div>
 
-&emsp;&emsp;Taki is a simple MAL API wrapper made for [Kumiko](https://github.com/AKR0SS/Kumiko-Discord-Bot) as none of the API wrappers I found were neither fast, or as streamlined as I would have liked the. This is my first interaction with node's Fetch API, json querying, jest, environment variables, and propper workflow Actions. With all of that listed, I don't know what I don't know and if there's any improvements as I develop this wrapper, please say so!
+&emsp;&emsp;Taki is a simple MAL API wrapper made for [Kumiko](https://github.com/AKR0SS/Kumiko-Discord-Bot) as none of the API wrappers I found were neither as fast, or as streamlined as I would have liked them. This is my first interaction with node's Fetch API, json querying, jest, environment variables, and propper workflow Actions. With all of that listed, I don't know what I don't know and if there's any improvements as I develop this wrapper, please say so!
 
 <div align="center">
 
