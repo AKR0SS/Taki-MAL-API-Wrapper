@@ -12,20 +12,20 @@
 &emsp;&emsp;Taki is a simple MAL API wrapper made for [Kumiko](https://github.com/AKR0SS/Kumiko-Discord-Bot) as none of the API wrappers I found were neither fast, or as streamlined as I would have liked the. This is my first interaction with node's Fetch API, json querying, jest, environment variables, and propper workflow Actions. With all of that listed, I don't know what I don't know and if there's any improvements as I develop this wrapper, please say so!
 
 <div align="center">
-<br></br>
 
 ## Table of Contents </div>
 
-- [Gettings Started](https://github.com/AKR0SS/Taki-MAL-API-Wrapper/blob/main/readme.md#Gettings_Started)
-- [Methods](https://https://github.com/AKR0SS/Taki-MAL-API-Wrapper/blob/main/readme.md#Methods)
-  - [`setClientKey()`](https://https://github.com/AKR0SS/Taki-MAL-API-Wrapper/blob/main/readme.md#setClientKey)
-  - [`getInfoFromId()`](https://https://github.com/AKR0SS/Taki-MAL-API-Wrapper/blob/main/readme.md#getInfoFromId)
-  - [`getInfoFromURL()`](https://https://github.com/AKR0SS/Taki-MAL-API-Wrapper/blob/main/readme.md#getInfoFromURL)
-  - [`search()`](https://https://github.com/AKR0SS/Taki-MAL-API-Wrapper/blob/main/readme.md#search)
-  - [`getInfoFromName()`](https://https://github.com/AKR0SS/Taki-MAL-API-Wrapper/blob/main/readme.md#getInfoFromName)
+- [Gettings Started](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#gettings-started-)
+  - [Creating your MAL Client ID](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#creating-your-mal-client-id)
+  - [Installation](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#installation)
+- [Methods](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#methods)
+  - [`setClientKey()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#setclientkeykey-string-void)
+  - [`getInfoFromId()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getinfofromidanimeid-number-promiseany)
+  - [`getInfoFromURL()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getinfofromurlurl-string-promiseany)
+  - [`search()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#searchname-string-promiseany)
+  - [`getInfoFromName()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getinfofromnamename-string-promiseany)
 
 <div align="center">
-<br></br>
 
 ## Gettings Started </div>
 
@@ -117,7 +117,6 @@ data();
 ```
 
 <div align="center">
-<br></br>
 
 ## Data Models </div>
 
