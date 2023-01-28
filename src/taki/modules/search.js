@@ -24,7 +24,7 @@ function search(name) {
         if (!name || typeof name !== 'string') return reject(new Error('[TAKI] Invalid Name '));
 
         const data = await getSearch(name);
-        resolve(data.data);
+        resolve(data);
     });
 }
 
