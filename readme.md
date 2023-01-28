@@ -25,7 +25,7 @@
   - [`search()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#searchname-string-promiseany)
   - [`getInfoFromName()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getinfofromnamename-string-promiseany)
 - [Data Models](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#data-models-)
-
+  - [Anime Info Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime-info-model)
 <div align="center">
 
 ## Gettings Started </div>
