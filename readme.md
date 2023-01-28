@@ -78,7 +78,11 @@ require("dotenv").config();
 const CLIENT_KEY = process.env.CLIENT_KEY;
 taki.setClientKey(CLIENT_KEY);
 
-/* call getInfoFromId() */
+/**
+ * Promises a json data object provided an anime's ID
+ * @param {number} AnimeId
+ * @returns {Promise} `Anime Info Model`
+ */
 async function data() { // where '27989' represents the anime Hibike! Euphonium
     const anime = await taki.getInfoFromId(27989);
     console.log(anime);
@@ -88,6 +92,12 @@ async function data() { // where '27989' represents the anime Hibike! Euphonium
 ### getInfoFromURL(url: string): Promise&lt;any>
 
 ```js
+/**
+ * Promises a json data object provided an anime's MAL URL
+ * - this is for lazy ppl like myself who don't want to parse an entered URL in my code
+ * @param {string} url 
+ * @returns {Promise} `Anime Info Model`
+ */
 async function data() {
     const anime = await taki.getInfoFromURL('https://myanimelist.net/anime/27989/Hibike_Euphonium');
     console.log(anime.title);
@@ -97,6 +107,11 @@ async function data() {
 ### search(name: string): Promise&lt;any>
 
 ```js
+/**
+ * Promises an array of json data object provided an anime's NAME
+ * @param {string} name
+ * @return {Promise} `Anime Search Model`
+ */
 async function data() {
     const anime = await taki.search('Hibike! Euphonium');
 
@@ -109,6 +124,11 @@ async function data() {
 ### getInfoFromName(name: string): Promise&lt;any>
 
 ```js
+/**
+ * Promises a json data object provided an anime's NAME
+ * @param {string} name 
+ * @returns {Promise} `First Anime Search Model Data Element`
+ */
 async function data() {
     const anime = await taki.getInfoFromName('Hibike! Euphonium');
     console.log(anime.node.title);
@@ -118,6 +138,11 @@ async function data() {
 ### getSeason(season: any, year: any): Promise&lt;any>
 
 ```js
+/**
+ * Promises an array of json data object provided an anime's NAME
+ * @param {string} season
+ * @return {Promise} `Anime Season Model`
+ */
 async function data() {
     const anime = await taki.getSeason('spring', '2015');
     console.log(anime.data[0].node.title);
