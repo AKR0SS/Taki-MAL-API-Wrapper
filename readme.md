@@ -24,6 +24,7 @@
   - [`getInfoFromURL()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getinfofromurlurl-string-promiseany)
   - [`search()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#searchname-string-promiseany)
   - [`getInfoFromName()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getinfofromnamename-string-promiseany)
+- [Data Models](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#data-models-)
 
 <div align="center">
 
@@ -45,7 +46,9 @@ Now to find your Client ID, again under the section header "Clients Accessing th
 - Run: `npm install [your-file-location]/taki-{version}.tgz`
   - Example: `npm install ../../downloads/myfolder/taki-0.1.0.tgz`
 
-## Methods
+<div align="center">
+
+## Methods </div>
 
 ### setClientKey(key: string): void
 
