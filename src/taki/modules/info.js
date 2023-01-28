@@ -4,7 +4,7 @@ const { checkClientKey } = require('../handlers/clientHandler');
 /**
  * Promises a json data object provided an anime's ID
  * @param {number} AnimeId
- * @returns {Promise} `json data object`
+ * @returns {Promise} `Anime Info Model`
  */
 function getInfoFromId(animeId) {
   return new Promise((resolve, reject) => {
@@ -19,7 +19,7 @@ function getInfoFromId(animeId) {
  * Promises a json data object provided an anime's MAL URL
  * - this is for lazy ppl like myself who don't want to parse an entered URL in my code
  * @param {string} url 
- * @returns {Promise} `json data object`
+ * @returns {Promise} `Anime Info Model`
  */
 function getInfoFromURL(url) {
   return new Promise((resolve, reject) => {

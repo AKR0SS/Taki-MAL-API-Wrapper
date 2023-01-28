@@ -17,6 +17,10 @@ function checkClientKey() {
     return false;
   }
 
+/**
+ * Get currently set Client Key
+ * @returns {string} key
+ */
 function getClientKey() {
     return CLIENT_KEY;
 }

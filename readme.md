@@ -24,8 +24,11 @@
   - [`getInfoFromURL()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getinfofromurlurl-string-promiseany)
   - [`search()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#searchname-string-promiseany)
   - [`getInfoFromName()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getinfofromnamename-string-promiseany)
+  - [`getSeason()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getinfofromnamename-string-promiseany)
 - [Data Models](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#data-models-)
   - [Anime Info Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime-info-model)
+  - [Anime Search Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime-search-model)
+  - [Anime Season Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime-season-model)
 <div align="center">
 
 ## Gettings Started </div>
@@ -75,91 +78,102 @@ require("dotenv").config();
 const CLIENT_KEY = process.env.CLIENT_KEY;
 taki.setClientKey(CLIENT_KEY);
 
-/* call getInfoFromId() */
+/**
+ * Promises a json data object provided an anime's ID
+ * @param {number} AnimeId
+ * @returns {Promise} `Anime Info Model`
+ */
 async function data() { // where '27989' represents the anime Hibike! Euphonium
-    const data = await taki.getInfoFromId(27989);
-    console.log(data);
+    const anime = await taki.getInfoFromId(27989);
+    console.log(anime);
 };
-
-data();
 ```
 
 ### getInfoFromURL(url: string): Promise&lt;any>
 
 ```js
+/**
+ * Promises a json data object provided an anime's MAL URL
+ * - this is for lazy ppl like myself who don't want to parse an entered URL in my code
+ * @param {string} url 
+ * @returns {Promise} `Anime Info Model`
+ */
 async function data() {
-    const data = await taki.getInfoFromURL('https://myanimelist.net/anime/27989/Hibike_Euphonium');
-    console.log(data);
+    const anime = await taki.getInfoFromURL('https://myanimelist.net/anime/27989/Hibike_Euphonium');
+    console.log(anime.title);
 };
-
-data();
 ```
 
 ### search(name: string): Promise&lt;any>
 
 ```js
+/**
+ * Promises an array of json data object provided an anime's NAME
+ * @param {string} name
+ * @return {Promise} `Anime Search Model`
+ */
 async function data() {
-    const data = await taki.search('Hibike! Euphonium');
-    for(let i = 0; i < data.length; i++) {
-        console.log(data[i]);
+    const anime = await taki.search('Hibike! Euphonium');
+
+    for (let i = 0; i < anime.data.length; i++) {
+        console.log(anime.data[i].node.title);
     }
 };
-
-data();
 ```
 
 ### getInfoFromName(name: string): Promise&lt;any>
 
 ```js
+/**
+ * Promises a json data object provided an anime's NAME
+ * @param {string} name 
+ * @returns {Promise} `First Anime Search Model Data Element`
+ */
 async function data() {
-    const data = await taki.getInfoFromName('Hibike! Euphonium');
-    console.log(data);
+    const anime = await taki.getInfoFromName('Hibike! Euphonium');
+    console.log(anime.node.title);
 };
+```
 
-data();
+### getSeason(season: any, year: any): Promise&lt;any>
+
+```js
+/**
+ * Promises an array of json data object provided an anime's NAME
+ * @param {string} season
+ * @return {Promise} `Anime Season Model`
+ */
+async function data() {
+    const anime = await taki.getSeason('spring', '2015');
+    console.log(anime.data[0].node.title);
+};
 ```
 
 <div align="center">
 
 ## Data Models </div>
 
-Currently, there is no option to return neither additional data models, nor specific queries for data models. So there is only one accessable data model returned by every command making things extremely consistant and easy, but with less flexibility and in hand, slightly slower performance.
+To view a specific data model on the MAL API page, on the right side under response samples > Content type, select "application/json". This will give you all of the possible return values for all of these differing models.
 
 ### Anime Info Model
 
-| Property | Type | Description |
-| --- | --- | --- |
-| id | number | Unique identifier for a specified anime |
-| title | string | Title of a queried anime |
-| main_picture | string object | Contains differing sizes of an anime's cover image |
-| alternative_titles | string object | Various titles depending on language |
-| start_date | string | The first date of airing |
-| end_date | string | The last date of airing |
-| synopsis | string | The description of an anime |
-| mean | number | The average user score |
-| rank | number | Rank of the average user score out of all anime |
-| popularity | number | A measure of how many members an anime has |
-| num_list_users | number | Number of users that have the anime on their list |
-| num_scoring_users | number | Number of users who haved scored the anime |
-| *nsfw | bool | Returns a consistance string 'white', not sure why so it is disabled currently |
-| created_at | string | Date of MAL page creation |
-| updated_at | string | Date of MAL page updated |
-| media_type | string | Whether the anime is a tv series, OVA, Movie, etc. |
-| status | string | Whether the anime is currently airing, finished airing, etc. |
-| genres | object array | All genres associated with an anime |
-| num_episodes | number | Total amount of episodes an anime has |
-| start_season | object | What season the anime aired in |
-| broadcast | string object | Day and time of airing |
-| source | string | What media the anime originated from, like a light novel or manga |
-| average_episode_duration | number | The number of seconds each episode on average lasts |
-| rating | string | User rating on MAL |
-| pictures | object array | All attached pictures to a specified anime |
-| background | string | Production specific awards and other interesting information not pertaining to plot |
-| related_anime | object array | List of anime prequels, sequals, OVA's, Movies, etc. of the queried anime |
-| related_manga | object array | List of all manga related sources, side stories, etc. of the queried anime |
-| recommendations | object array | A sorted object of which anime are most recommended pertaining to the queried anime |
-| studios | object array | List of production studios |
-| statistics | objest | How many users have completed, dropped, are watching, etc. of the queried anime |
+<https://myanimelist.net/apiconfig/references/api/v2#operation/anime_anime_id_get>
+
+### Anime Search Model
+
+<https://myanimelist.net/apiconfig/references/api/v2#operation/anime_season_year_season_get>
+
+### Anime Search Model
+
+<https://myanimelist.net/apiconfig/references/api/v2#operation/anime_get>
+
+<div align="center">
+
+## License </div>
+
+MIT License
+
+Copyright (c) 2023 Akross
 
 [repo-url]: https://github.com/akr0ss/Taki-MAL-API-Wrapper
 [version-shield]: https://img.shields.io/github/v/release/akr0ss/Taki-MAL-API-Wrapper?include_prereleases

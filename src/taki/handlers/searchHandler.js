@@ -3,7 +3,7 @@ const { getClientKey } = require('../handlers/clientHandler');
 /**
  * Fetches Anime json data from the MAL API for a list of best-match results.
  * @param {string} AnimeName
- * @return {object} `Anime Id`
+ * @return {object} `Anime Search Model`
  */
 async function getSearch(name) {
     const CLIENT_KEY = getClientKey();
