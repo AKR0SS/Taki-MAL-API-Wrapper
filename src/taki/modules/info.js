@@ -1,21 +1,3 @@
-// queries for all avaliable elements within an anime object from MAL
-
-/**
- * Your Client Key provided from MAL to fetch API data
- * @param {string} key
- */
-function setClientKey(key) {
-  CLIENT_KEY = key;
-}
-
-/**
- * Checks if the user has called and set a CLIENT_KEY to make suffecient API queries
- * @returns {Boolean} if client key exists
- */
-function checkClientKey() {
-  if (CLIENT_KEY) return true;
-  return false;
-}
 const getInfo = require("../handlers/infoHandler");
 const { checkClientKey } = require('../handlers/clientHandler');
 
