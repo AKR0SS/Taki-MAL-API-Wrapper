@@ -122,7 +122,7 @@ data();
 
 Currently, there is no option to return neither additional data models, nor specific queries for data models. So there is only one accessable data model returned by every command making things extremely consistant and easy, but with less flexibility and in hand, slightly slower performance.
 
-### Anime search model
+### Anime Info Model
 
 | Property | Type | Description |
 | --- | --- | --- |
