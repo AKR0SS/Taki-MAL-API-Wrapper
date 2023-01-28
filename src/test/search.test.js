@@ -22,14 +22,14 @@ test('Anime Info by NAME', async () => {
     setClientKey(CLIENT_KEY);
     const data = await getInfoFromName(ANIME_NAME);
 
-    expect(data.id).toBe(27989);
-    expect(data.title).toBe(ANIME_NAME);
+    expect(data.node.id).toBe(27989);
+    expect(data.node.title).toBe(ANIME_NAME);
 });
 
 test('Anime Search by NAME', async () => {
     setClientKey(CLIENT_KEY);
     const data = await search(ANIME_NAME);
-
-    expect(data[0].id).toBe(27989);
-    expect(data[0].title).toBe(ANIME_NAME);
+    
+    expect(data[0].node.id).toBe(27989);
+    expect(data[0].node.title).toBe(ANIME_NAME);
 });

@@ -1,40 +1,5 @@
-// queries for all avaliable elements within an anime object from MAL
-const FIELDS = 'id,title,main_picture,alternative_titles,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,created_at,updated_at,media_type,status,genres,num_episodes,start_season,broadcast,source,average_episode_duration,rating,pictures,background,related_anime,related_manga,recommendations,studios,statistics';
-
-let CLIENT_KEY;
-
-/**
- * Fetches Anime json data from the MAL API for a specific Anime
- * @param {int} AnimeId
- * @return {object} `json data object`
- */
-async function getInfo(animeId) {
-  const request = await fetch(`https://api.myanimelist.net/v2/anime/${animeId}?fields=${FIELDS}`, {
-    method: 'GET',
-    credentials: 'include',
-    headers: {
-      'X-MAL-CLIENT-ID': CLIENT_KEY
-    }
-  });
-  return request.json();
-}
-
-/**
- * Your Client Key provided from MAL to fetch API data
- * @param {string} key
- */
-function setClientKey(key) {
-  CLIENT_KEY = key;
-}
-
-/**
- * Checks if the user has called and set a CLIENT_KEY to make suffecient API queries
- * @returns {Boolean} if client key exists
- */
-function checkClientKey() {
-  if (CLIENT_KEY) return true;
-  return false;
-}
+const getInfo = require("../handlers/infoHandler");
+const { checkClientKey } = require('../handlers/clientHandler');
 
 /**
  * Promises a json data object provided an anime's ID
@@ -62,14 +27,13 @@ function getInfoFromURL(url) {
     if (!checkClientKey()) return reject(new Error('[TAKI] No MAL "CLIENT_KEY" provided'));
 
     const split = url.split('/');
-    const id = split[4];
+    const animeId = split[4];
 
-    resolve(getInfo(id));
+    resolve(getInfo(animeId));
   });
 }
 
 module.exports = {
-  setClientKey,
   getInfoFromId,
   getInfoFromURL
 };
