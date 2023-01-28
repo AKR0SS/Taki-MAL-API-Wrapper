@@ -6,7 +6,7 @@ const FIELDS = 'id,title,main_picture,alternative_titles,start_date,end_date,syn
 /**
  * Fetches Anime json data from the MAL API for a specific Anime
  * @param {int} AnimeId
- * @return {object} `json data object`
+ * @return {object} `Anime Info Model`
  */
 async function getInfo(animeId) {
     const CLIENT_KEY = getClientKey();
