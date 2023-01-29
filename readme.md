@@ -182,6 +182,10 @@ To view a specific data model on the MAL API page, on the right side under respo
 
 <https://myanimelist.net/apiconfig/references/api/v2#operation/anime_season_year_season_get>
 
+### User Anime List Model
+
+<https://myanimelist.net/apiconfig/references/api/v2#operation/users_user_id_animelist_get>
+
 <div align="center">
 
 ## License </div>
