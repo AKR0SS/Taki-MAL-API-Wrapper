@@ -30,6 +30,7 @@
   - [Anime Info Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime-info-model)
   - [Anime Search Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime-search-model)
   - [Anime Season Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime-season-model)
+  - [User Anime List Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#user-anime-list-model)
 <div align="center">
 
 ## Gettings Started </div>
