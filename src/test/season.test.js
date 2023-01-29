@@ -19,6 +19,10 @@ test('rejects an invad season', () => {
     expect(getSeason('', year)).rejects.toThrow('[TAKI] Invalid Season');
 });
 
+test('rejects null client key', () => {
+    expect(getSeason(season, year)).rejects.toThrow('[TAKI] No MAL "CLIENT_KEY" provided');
+});
+
 // Logic Testing
 
 test('Get Seasonal Data', async () => {

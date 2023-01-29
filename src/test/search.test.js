@@ -16,6 +16,11 @@ test('rejects an invalid Name', () => {
     expect(search(12345)).rejects.toThrow('[TAKI] Invalid Name');
 });
 
+test('reject null client keyt', () => {
+    expect(getInfoFromName(ANIME_NAME)).rejects.toThrow('[TAKI] No MAL "CLIENT_KEY" provided');
+    expect(search(ANIME_NAME)).rejects.toThrow('[TAKI] No MAL "CLIENT_KEY" provided');
+});
+
 // Logic Testing
 
 test('Anime Info by NAME', async () => {
