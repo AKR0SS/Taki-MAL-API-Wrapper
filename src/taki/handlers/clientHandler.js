@@ -5,7 +5,7 @@ let CLIENT_KEY;
  * @param {string} key
  */
 function setClientKey(key) {
-    CLIENT_KEY = key;
+  CLIENT_KEY = key;
 }
 
 /**
@@ -13,20 +13,20 @@ function setClientKey(key) {
  * @returns {Boolean} if client key exists
  */
 function checkClientKey() {
-    if (CLIENT_KEY) return true;
-    return false;
-  }
+  if (CLIENT_KEY) return true;
+  return false;
+}
 
 /**
  * Get currently set Client Key
  * @returns {string} key
  */
 function getClientKey() {
-    return CLIENT_KEY;
+  return CLIENT_KEY;
 }
 
 module.exports = {
-    setClientKey,
-    getClientKey,
-    checkClientKey
+  setClientKey,
+  getClientKey,
+  checkClientKey
 }

@@ -10,13 +10,13 @@ const animeId = 27775;
 // Exception Testing
 
 test('rejects an invalid year', () => {
-    expect(getSeason(season, '2015')).rejects.toThrow('[TAKI] Invalid Year');
-    expect(getSeason(season, '')).rejects.toThrow('[TAKI] Invalid Year');
+  expect(getSeason(season, '2015')).rejects.toThrow('[TAKI] Invalid Year');
+  expect(getSeason(season, '')).rejects.toThrow('[TAKI] Invalid Year');
 });
 
 test('rejects an invad season', () => {
-    expect(getSeason(1, year)).rejects.toThrow('[TAKI] Invalid Season');
-    expect(getSeason('', year)).rejects.toThrow('[TAKI] Invalid Season');
+  expect(getSeason(1, year)).rejects.toThrow('[TAKI] Invalid Season');
+  expect(getSeason('', year)).rejects.toThrow('[TAKI] Invalid Season');
 });
 
 test('rejects null client key', () => {
@@ -26,7 +26,7 @@ test('rejects null client key', () => {
 // Logic Testing
 
 test('Get Seasonal Data', async () => {
-    setClientKey(CLIENT_KEY);
-    const data = await getSeason(season, year);
-    expect(data.data[9].node.id).toBe(animeId);
+  setClientKey(CLIENT_KEY);
+  const data = await getSeason(season, year);
+  expect(data.data[9].node.id).toBe(animeId);
 });

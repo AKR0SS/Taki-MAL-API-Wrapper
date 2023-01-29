@@ -1,22 +1,20 @@
-const {
-    getClientKey
-  } = require('./clientHandler');
+const { getClientKey } = require('./clientHandler');
 
-  /**
+/**
  * Paginates forward
  * @param {Object} data
  * @return {object} `User Anime List Model`
  */
 async function getNext(data) {
-    const CLIENT_KEY = getClientKey();
-    const request = await fetch(data.paging.next, {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-            'X-MAL-CLIENT-ID': CLIENT_KEY
-        }
-    });
-    return request.json();
+  const CLIENT_KEY = getClientKey();
+  const request = await fetch(data.paging.next, {
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+      'X-MAL-CLIENT-ID': CLIENT_KEY
+    }
+  });
+  return request.json();
 }
 
 /**
@@ -25,18 +23,18 @@ async function getNext(data) {
  * @return {object} `User Anime List Model`
  */
 async function getPrevious(data) {
-    const CLIENT_KEY = getClientKey();
-    const request = await fetch(data.paging.previous, {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-            'X-MAL-CLIENT-ID': CLIENT_KEY
-        }
-    });
-    return request.json();
+  const CLIENT_KEY = getClientKey();
+  const request = await fetch(data.paging.previous, {
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+      'X-MAL-CLIENT-ID': CLIENT_KEY
+    }
+  });
+  return request.json();
 }
 
 module.exports = {
-    getPrevious,
-    getNext
+  getPrevious,
+  getNext
 }

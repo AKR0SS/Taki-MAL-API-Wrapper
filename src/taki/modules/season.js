@@ -8,16 +8,16 @@ const { checkClientKey } = require('../handlers/clientHandler');
  * @return {Promise} `Anime Season Model`
  */
 function getSeason(season, year) {
-    return new Promise(async (resolve, reject) => {
-        if (!year || typeof year !== 'number') return reject(new Error('[TAKI] Invalid Year'));
-        if (!season || typeof season !== 'string') return reject(new Error('[TAKI] Invalid Season'));
-        if (!checkClientKey()) return reject(new Error('[TAKI] No MAL "CLIENT_KEY" provided'));
+  return new Promise(async (resolve, reject) => {
+    if (!year || typeof year !== 'number') return reject(new Error('[TAKI] Invalid Year'));
+    if (!season || typeof season !== 'string') return reject(new Error('[TAKI] Invalid Season'));
+    if (!checkClientKey()) return reject(new Error('[TAKI] No MAL "CLIENT_KEY" provided'));
 
-        let data = await getSeasonInfo(season, year);
-        resolve(data);
-    });
+    let data = await getSeasonInfo(season, year);
+    resolve(data);
+  });
 }
 
 module.exports = {
-    getSeason
+  getSeason
 }
