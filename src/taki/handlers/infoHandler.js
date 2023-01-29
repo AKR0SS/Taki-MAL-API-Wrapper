@@ -9,15 +9,15 @@ const FIELDS = 'id,title,main_picture,alternative_titles,start_date,end_date,syn
  * @return {object} `Anime Info Model`
  */
 async function getInfo(animeId) {
-    const CLIENT_KEY = getClientKey();
-    const request = await fetch(`https://api.myanimelist.net/v2/anime/${animeId}?fields=${FIELDS}`, {
-      method: 'GET',
-      credentials: 'include',
-      headers: {
-        'X-MAL-CLIENT-ID': CLIENT_KEY
-      }
-    });
-    return request.json();
+  const CLIENT_KEY = getClientKey();
+  const request = await fetch(`https://api.myanimelist.net/v2/anime/${animeId}?fields=${FIELDS}`, {
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+      'X-MAL-CLIENT-ID': CLIENT_KEY
+    }
+  });
+  return request.json();
 }
 
 module.exports = getInfo;

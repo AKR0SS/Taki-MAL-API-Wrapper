@@ -1,6 +1,4 @@
-const {
-  getClientKey
-} = require('../handlers/clientHandler');
+const { getClientKey } = require('../handlers/clientHandler');
 
 // Default values if sort and field values are not set
 const limit = 10;
@@ -24,6 +22,4 @@ async function getList(user) {
   return request.json();
 }
 
-module.exports = {
-  getList
-};
+module.exports = getList;
