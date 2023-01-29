@@ -25,6 +25,7 @@
   - [`search()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#searchname-string-promiseany)
   - [`getInfoFromName()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getinfofromnamename-string-promiseany)
   - [`getSeason()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getinfofromnamename-string-promiseany)
+  - [`getUserWatchList()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getuserwatchlistfromuser-string-promiseany)
 - [Data Models](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#data-models-)
   - [Anime Info Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime-info-model)
   - [Anime Search Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime-search-model)
@@ -145,6 +146,20 @@ async function data() {
  */
 async function data() {
     const anime = await taki.getSeason('spring', '2015');
+    console.log(anime.data[0].node.title);
+};
+```
+
+### getUserWatchList(user: string): Promise&lt;any>
+
+```js
+/**
+ * Promises a json data object provided a username
+ * @param {String} user
+ * @returns {Promise} `User Anime List Model`
+ */
+async function data() {
+    const anime = await taki.getUserWatchList('xAKROSSx');
     console.log(anime.data[0].node.title);
 };
 ```
