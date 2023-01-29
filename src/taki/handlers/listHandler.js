@@ -14,7 +14,7 @@ const fields = 'alternative_titles,start_date,end_date,synopsis,mean,rank,popula
  */
 async function getList(user) {
   const CLIENT_KEY = getClientKey();
-  const request = await fetch(`https://api.myanimelist.net/v2/users/${user}/animelist?&limit=${limit}&sort=${sort}&fields=${fields}`, {
+  const request = await fetch(`https://api.myanimelist.net/v2/users/${user}/animelist?&limit=${limit}&sort=${sort}&fields=list_status,${fields}`, {
     method: 'GET',
     credentials: 'include',
     headers: {
