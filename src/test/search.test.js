@@ -6,14 +6,14 @@ const ANIME_NAME = 'Hibike! Euphonium';
 
 // Exception Testing
 
-test('rejects an invalid Name', async () => {
-    await expect(getInfoFromName()).rejects.toThrow('[TAKI] Invalid Name');
-    await expect(getInfoFromName(12345)).rejects.toThrow('[TAKI] Invalid Name');
+test('rejects an invalid Name', () => {
+    expect(getInfoFromName()).rejects.toThrow('[TAKI] Invalid Name');
+    expect(getInfoFromName(12345)).rejects.toThrow('[TAKI] Invalid Name');
 });
 
-test('rejects an invalid Name', async () => {
-    await expect(search()).rejects.toThrow('[TAKI] Invalid Name');
-    await expect(search(12345)).rejects.toThrow('[TAKI] Invalid Name');
+test('rejects an invalid Name', () => {
+    expect(search()).rejects.toThrow('[TAKI] Invalid Name');
+    expect(search(12345)).rejects.toThrow('[TAKI] Invalid Name');
 });
 
 // Logic Testing
