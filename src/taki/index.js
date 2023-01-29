@@ -1,7 +1,8 @@
+const { setClientKey } = require('./handlers/clientHandler.js');
 const { getInfoFromId, getInfoFromURL } = require('./modules/info.js');
 const { getInfoFromName, search } = require('./modules/search.js');
 const { getSeason } =  require('./modules/season.js');
-const { setClientKey } = require('./handlers/clientHandler.js');
+const { getUserWatchList } = require('./modules/list.js');
 
 module.exports = {
     setClientKey,
@@ -9,5 +10,6 @@ module.exports = {
     getInfoFromURL,
     getInfoFromName,
     search,
-    getSeason
+    getSeason,
+    getUserWatchList
 };
