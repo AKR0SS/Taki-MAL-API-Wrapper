@@ -159,8 +159,14 @@ async function data() {
  * @returns {Promise} `User Anime List Model`
  */
 async function data() {
-    const anime = await taki.getUserWatchList('xAKROSSx');
-    console.log(anime.data[0].node.title);
+    let anime = await taki.getUserWatchList('xAKROSSx');
+    console.log(anime.data[0].node.id);
+
+    anime = await taki.getUserWatchList.next(anime);
+    console.log(anime.data[0].list_status);
+
+    anime = await taki.getUserWatchList.previous(anime);
+    console.log(anime.data[0].list_status.status);
 };
 ```
 
@@ -168,7 +174,7 @@ async function data() {
 
 ## Data Models </div>
 
-To view a specific data model on the MAL API page, on the right side under response samples > Content type, select "application/json". This will give you all of the possible return values for all of these differing models.
+To view a specific data model on the MAL API page, under "Responses", we can find all of the the accessable data provided by the default queries.
 
 ### Anime Info Model
 
