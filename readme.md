@@ -115,11 +115,19 @@ async function data() {
  * @return {Promise} `Anime Search Model`
  */
 async function data() {
-    const anime = await taki.search('Hibike! Euphonium');
+    let anime = await taki.search('Hibike! Euphonium');
 
     for (let i = 0; i < anime.data.length; i++) {
         console.log(anime.data[i].node.title);
     }
+
+    // Since A list of results could be returned, our function has a pagination method
+    // as well that we can use to easily get the next page of results.
+    anime = await taki.search.next(anime);
+    console.log(anime.data[0].list_status);
+
+    anime = await taki.search.previous(anime);
+    console.log(anime.data[0].list_status.status);
 };
 ```
 
@@ -146,8 +154,16 @@ async function data() {
  * @return {Promise} `Anime Season Model`
  */
 async function data() {
-    const anime = await taki.getSeason('spring', '2015');
+    let anime = await taki.getSeason('spring', '2015');
     console.log(anime.data[0].node.title);
+
+    // Since A list of results could be returned, our function has a pagination method
+    // as well that we can use to easily get the next page of results.
+    anime = await taki.search.next(anime);
+    console.log(anime.data[0].list_status);
+
+    anime = await taki.search.previous(anime);
+    console.log(anime.data[0].list_status.status);
 };
 ```
 
@@ -163,6 +179,8 @@ async function data() {
     let anime = await taki.getUserWatchList('xAKROSSx');
     console.log(anime.data[0].node.id);
 
+    // Since A list of results could be returned, our function has a pagination method
+    // as well that we can use to easily get the next page of results.
     anime = await taki.getUserWatchList.next(anime);
     console.log(anime.data[0].list_status);
 
