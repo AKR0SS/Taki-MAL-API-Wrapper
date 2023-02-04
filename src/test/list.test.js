@@ -47,7 +47,8 @@ test('Get the next page from watch list', async () => {
   setClientKey(CLIENT_KEY);
   let anime = await getUserWatchList(USER);
 
-  await getUserWatchList.next(anime);
+  anime = await getUserWatchList.next(anime);
+  expect(anime.data[0].node.id).toBe(37510);
 });
 
 test('Get the previous page from watch list', async () => {
@@ -55,5 +56,6 @@ test('Get the previous page from watch list', async () => {
   let anime = await getUserWatchList(USER);
   anime = await getUserWatchList.next(anime);
 
-  await getUserWatchList.previous(anime);
+  anime = await getUserWatchList.previous(anime);
+  expect(anime.data[0].node.id).toBe(1);
 });
