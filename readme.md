@@ -18,7 +18,7 @@
 - [Gettings Started](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#gettings-started-)
   - [Creating your MAL Client ID](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#creating-your-mal-client-id)
   - [Installation](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#installation)
-- [Methods](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#methods)
+- [Methods](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#methods-)
   - [`setClientKey()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#setclientkeykey-string-void)
   - [`getInfoFromId()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getinfofromidanimeid-number-promiseany)
   - [`getInfoFromURL()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getinfofromurlurl-string-promiseany)
