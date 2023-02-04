@@ -175,7 +175,7 @@ async function data() {
 
 ## Data Models </div>
 
-To view a specific data model on the MAL API page, under "Responses", we can find all of the the accessable data provided by the default queries.
+To view a specific data model on the MAL API page, under "Responses", selecting "200 OK" to open the drop down, we can find all of the the accessable data provided by the default queries.
 
 ### Anime Info Model
 
