@@ -20,13 +20,48 @@ test('rejects an invad season', () => {
 });
 
 test('rejects null client key', () => {
-    expect(getSeason(season, year)).rejects.toThrow('[TAKI] No MAL "CLIENT_KEY" provided');
+  const obj = {};
+
+  expect(getSeason(season, year)).rejects.toThrow('[TAKI] No MAL "CLIENT_KEY" provided');
+  expect(getSeason.next(obj)).rejects.toThrow('[TAKI] No MAL "CLIENT_KEY" provided');
+  expect(getSeason.previous(obj)).rejects.toThrow('[TAKI] No MAL "CLIENT_KEY" provided');
+});
+
+test('rejects invalid paging data', () => {
+  expect(getSeason.next('')).rejects.toThrow('[TAKI] Invalid Data');
+  expect(getSeason.previous('')).rejects.toThrow('[TAKI] Invalid Data');
+});
+
+test('rejects invalid pagination', async () => {
+  setClientKey(CLIENT_KEY);
+  const anime = await getSeason('spring', 1960);
+
+  expect(getSeason.next(anime)).rejects.toThrow('[TAKI] Cannot access page that does not exist');
+  expect(getSeason.previous(anime)).rejects.toThrow('[TAKI] Cannot access page that does not exist');
 });
 
 // Logic Testing
 
 test('Get Seasonal Data', async () => {
   setClientKey(CLIENT_KEY);
-  const data = await getSeason(season, year);
-  expect(data.data[9].node.id).toBe(animeId);
+  const listing = await getSeason(season, year);
+
+  expect(listing.data[9].node.id).toBe(animeId);
+});
+
+test('Get the next page from watch list', async () => {
+  setClientKey(CLIENT_KEY);
+  let listing = await getSeason(season, year);
+
+  listing = await getSeason.next(listing);
+  expect(listing.data[9].node.id).toBe(27989);
+});
+
+test('Get the previous page from watch list', async () => {
+  setClientKey(CLIENT_KEY);
+  let listing = await getSeason(season, year);
+  listing = await getSeason.next(listing);
+
+  listing = await getSeason.previous(listing);
+  expect(listing.data[0].node.id).toBe(1735);
 });

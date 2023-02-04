@@ -17,8 +17,25 @@ test('rejects an invalid Name', () => {
 });
 
 test('reject null client keyt', () => {
-    expect(getInfoFromName(ANIME_NAME)).rejects.toThrow('[TAKI] No MAL "CLIENT_KEY" provided');
-    expect(search(ANIME_NAME)).rejects.toThrow('[TAKI] No MAL "CLIENT_KEY" provided');
+  const obj = {};
+
+  expect(getInfoFromName(ANIME_NAME)).rejects.toThrow('[TAKI] No MAL "CLIENT_KEY" provided');
+  expect(search(ANIME_NAME)).rejects.toThrow('[TAKI] No MAL "CLIENT_KEY" provided');
+  expect(search.next(obj)).rejects.toThrow('[TAKI] No MAL "CLIENT_KEY" provided');
+  expect(search.previous(obj)).rejects.toThrow('[TAKI] No MAL "CLIENT_KEY" provided');
+});
+
+test('rejects invalid paging data', () => {
+  expect(search.next('')).rejects.toThrow('[TAKI] Invalid Data');
+  expect(search.previous('')).rejects.toThrow('[TAKI] Invalid Data');
+});
+
+test('rejects invalid pagination', async () => {
+  setClientKey(CLIENT_KEY);
+  const anime = await search('ww,');
+
+  expect(search.next(anime)).rejects.toThrow('[TAKI] Cannot access page that does not exist');
+  expect(search.previous(anime)).rejects.toThrow('[TAKI] Cannot access page that does not exist');
 });
 
 // Logic Testing
@@ -37,4 +54,21 @@ test('Anime Search by NAME', async () => {
 
   expect(data.data[0].node.id).toBe(27989);
   expect(data.data[0].node.title).toBe(ANIME_NAME);
+});
+
+test('Get the next page from watch list', async () => {
+  setClientKey(CLIENT_KEY);
+  let anime = await search(ANIME_NAME);
+
+  anime = await search.next(anime);
+  expect(anime.data[0].node.id).toBe(31989);
+});
+
+test('Get the previous page from watch list', async () => {
+  setClientKey(CLIENT_KEY);
+  let anime = await search(ANIME_NAME);
+  anime = await search.next(anime);
+
+  anime = await search.previous(anime);
+  expect(anime.data[0].node.id).toBe(27989);
 });
