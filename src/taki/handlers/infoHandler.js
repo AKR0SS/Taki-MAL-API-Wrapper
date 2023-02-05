@@ -11,6 +11,7 @@ const pathParameters = '/v2/anime/';
 /**
  * Fetches Anime json data from the MAL API for a specific Anime
  * @param {int} AnimeId
+ * @param {string} [fields]
  * @return {object} `Anime Info Model`
  */
 async function getInfo(animeId, fields = _FIELDS) {

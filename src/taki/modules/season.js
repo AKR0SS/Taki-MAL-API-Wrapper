@@ -6,6 +6,7 @@ const { getNext, getPrevious } = require('../handlers/pagingHandler');
  * Promises an array of json data object provided an anime's NAME
  * @param {string} season
  * @param {number} year
+ * @param {string} [sort]
  * @return {Promise} `Anime Season Model`
  */
 function getSeason(season, year, sort) {

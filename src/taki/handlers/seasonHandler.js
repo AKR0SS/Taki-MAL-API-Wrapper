@@ -10,6 +10,7 @@ const pathParameters = '/v2/anime/season/';
  * Fetches Anime json data from the MAL API for a list of best-match results.
  * @param {string} season
  * @param {number} year
+ * @param {string} [sort]
  * @return {object} `Anime Season Model`
  */
 async function getSeasonInfo(season, year, sort = _SORT) {

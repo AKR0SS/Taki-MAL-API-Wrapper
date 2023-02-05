@@ -12,14 +12,17 @@ const pathParameters2 = '/animelist';
 
 /**
  * Fetches a user's anime list pre-sorted by score
- * @param {String} user
+ * @param {string} user
+ * @param {number} [limit]
+ * @param {string} [sort]
+ * @param {string} [fields]
  * @return {object} `User Anime List Model`
  */
 async function getList(user, limit = _LIMIT, sort = _SORT, fields = _FIELDS) {
   const CLIENT_KEY = getClientKey();
 
   url.pathname = path.join(pathParameters1, user, pathParameters2);
-  url.searchParams.set('limit', limit);
+  url.searchParams.set('limit', limit.toString());
   url.searchParams.set('sort', sort);
   url.searchParams.set('fields', fields);
 
