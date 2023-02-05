@@ -4,15 +4,16 @@ const { getNext, getPrevious } = require('../handlers/pagingHandler');
 
 /**
  * Promises a json data object provided an anime's NAME
- * @param {string} name 
+ * @param {string} name
+ * @param {string} [fields]
  * @returns {Promise} `First Anime Search Model Data Element`
  */
-function getInfoFromName(name) {
+function getInfoFromName(name, fields) {
   return new Promise(async (resolve, reject) => {
     if (!name || typeof name !== 'string') return reject(new Error('[TAKI] Invalid Name '));
     if (!checkClientKey()) return reject(new Error('[TAKI] No MAL "CLIENT_KEY" provided'));
 
-    const data = await getSearch(name);
+    const data = await getSearch(name, fields);
     resolve(data.data[0]);
   });
 }
@@ -20,9 +21,10 @@ function getInfoFromName(name) {
 /**
  * Promises an array of json data object provided an anime's NAME
  * @param {string} name
+ * @param {string} [fields]
  * @return {Promise} `Anime Search Model`
  */
-function search(name) {
+function search(name, fields) {
   /** 
    * Promises a json data object provided a username
    * @param {Object} data
@@ -57,7 +59,7 @@ function search(name) {
     if (!name || typeof name !== 'string') return reject(new Error('[TAKI] Invalid Name'));
     if (!checkClientKey()) return reject(new Error('[TAKI] No MAL "CLIENT_KEY" provided'));
 
-    const data = await getSearch(name);
+    const data = await getSearch(name, fields);
     resolve(data);
   });
 }
