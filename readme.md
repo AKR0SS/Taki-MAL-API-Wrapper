@@ -108,12 +108,13 @@ async function data() {
 };
 ```
 
-### search(name: string): Promise&lt;any>
+### search(name: string, fields?: string | undefined): Promise&lt;any>
 
 ```js
 /**
  * Promises an array of json data object provided an anime's NAME
  * @param {string} name
+ * @param {string} [fields]
  * @return {Promise} `Anime Search Model`
  */
 async function data() {
@@ -133,12 +134,13 @@ async function data() {
 };
 ```
 
-### getInfoFromName(name: string): Promise&lt;any>
+### getInfoFromName(name: string, fields?: string | undefined): Promise&lt;any>
 
 ```js
 /**
  * Promises a json data object provided an anime's NAME
- * @param {string} name 
+ * @param {string} name
+ * @param {string} [fields]
  * @returns {Promise} `First Anime Search Model Data Element`
  */
 async function data() {
