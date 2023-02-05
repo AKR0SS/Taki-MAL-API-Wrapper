@@ -5,7 +5,7 @@ const CLIENT_KEY = process.env.CLIENT_KEY;
 
 const season = 'spring';
 const year = 2015;
-const animeId = 27775;
+const animeId = 31096;
 
 // Exception Testing
 
@@ -46,7 +46,14 @@ test('Get Seasonal Data', async () => {
   setClientKey(CLIENT_KEY);
   const listing = await getSeason(season, year);
 
-  expect(listing.data[9].node.id).toBe(animeId);
+  expect(listing.data[2].node.id).toBe(animeId);
+});
+
+test('Get Seasonal Data', async () => {
+  setClientKey(CLIENT_KEY);
+  const listing = await getSeason(season, year, 'anime_num_list_users');
+
+  expect(listing.data[9].node.id).toBe(27775);
 });
 
 test('Get the next page from watch list', async () => {
@@ -54,7 +61,7 @@ test('Get the next page from watch list', async () => {
   let listing = await getSeason(season, year);
 
   listing = await getSeason.next(listing);
-  expect(listing.data[9].node.id).toBe(27989);
+  expect(listing.data[0].node.id).toBe(30813);
 });
 
 test('Get the previous page from watch list', async () => {
@@ -63,5 +70,5 @@ test('Get the previous page from watch list', async () => {
   listing = await getSeason.next(listing);
 
   listing = await getSeason.previous(listing);
-  expect(listing.data[0].node.id).toBe(1735);
+  expect(listing.data[2].node.id).toBe(animeId);
 });

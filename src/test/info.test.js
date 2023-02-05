@@ -32,10 +32,26 @@ test('Anime Info by ID', async () => {
   expect(data.title).toBe('Hibike! Euphonium');
 });
 
+test('Anime Info by ID with custom Fields', async () => {
+  setClientKey(CLIENT_KEY);
+  const data = await getInfoFromId(testAnimeId, 'id,title,main_picture,source');
+
+  expect(data.source).toBe('novel');
+  expect(data.synopsis).toBe(undefined);
+});
+
 test('Anime Info by URL', async () => {
   setClientKey(CLIENT_KEY);
   const data = await getInfoFromURL(testAnimeURL);
 
   expect(data.id).toBe(testAnimeId);
   expect(data.title).toBe('Hibike! Euphonium');
+});
+
+test('Anime Info by URL with custom Fields', async () => {
+  setClientKey(CLIENT_KEY);
+  const data = await getInfoFromURL(testAnimeURL, 'id,title,main_picture,source');
+
+  expect(data.source).toBe('novel');
+  expect(data.synopsis).toBe(undefined);
 });
