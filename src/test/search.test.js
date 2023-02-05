@@ -48,6 +48,14 @@ test('Anime Info by NAME', async () => {
   expect(data.node.title).toBe(ANIME_NAME);
 });
 
+test('Anime Info by NAME with custom fields', async () => {
+  setClientKey(CLIENT_KEY);
+  const data = await getInfoFromName(ANIME_NAME, 'id,title,main_picture,source');
+
+  expect(data.node.source).toBe('novel');
+  expect(data.node.synopsis).toBe(undefined);
+});
+
 test('Anime Search by NAME', async () => {
   setClientKey(CLIENT_KEY);
   const data = await search(ANIME_NAME);

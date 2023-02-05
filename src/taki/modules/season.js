@@ -6,9 +6,10 @@ const { getNext, getPrevious } = require('../handlers/pagingHandler');
  * Promises an array of json data object provided an anime's NAME
  * @param {string} season
  * @param {number} year
+ * @param {string} [sort]
  * @return {Promise} `Anime Season Model`
  */
-function getSeason(season, year) {
+function getSeason(season, year, sort) {
   /** 
    * Promises a json data object provided a username
    * @param {Object} data
@@ -44,7 +45,7 @@ function getSeason(season, year) {
     if (!season || typeof season !== 'string') return reject(new Error('[TAKI] Invalid Season'));
     if (!checkClientKey()) return reject(new Error('[TAKI] No MAL "CLIENT_KEY" provided'));
 
-    let data = await getSeasonInfo(season, year);
+    let data = await getSeasonInfo(season, year, sort);
     resolve(data);
   });
 }

@@ -5,9 +5,12 @@ const { getNext, getPrevious } = require('../handlers/pagingHandler');
 /**
  * Promises a json data object provided a username
  * @param {String} user
+ * @param {number} [limit]
+ * @param {string} [sort]
+ * @param {string} [fields]
  * @returns {Promise} `User Anime List Model`
  */
-function getUserWatchList(user) {
+function getUserWatchList(user, limit, sort, fields) {
   /** 
    * Promises a json data object provided a username
    * @param {Object} data
@@ -42,7 +45,7 @@ function getUserWatchList(user) {
     if (!user || typeof user !== 'string') return reject(new Error('[TAKI] Invalid User'));
     if (!checkClientKey()) return reject(new Error('[TAKI] No MAL "CLIENT_KEY" provided'));
 
-    resolve(getList(user));
+    resolve(getList(user, limit, sort, fields));
   });
 }
 

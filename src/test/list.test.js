@@ -43,6 +43,13 @@ test('Gets a user\'s watch list', async () => {
   expect(anime.data[0].node.id).toBe(1);
 });
 
+test('Gets a user\'s watch list with custom fields', async () => {
+  setClientKey(CLIENT_KEY);
+  const anime = await getUserWatchList(USER, 2, undefined, 'id,title,source');
+
+  expect(anime.data[0].node.source).toBe('original');
+});
+
 test('Get the next page from watch list', async () => {
   setClientKey(CLIENT_KEY);
   let anime = await getUserWatchList(USER);
