@@ -6,12 +6,12 @@ const { checkClientKey } = require('../handlers/clientHandler');
  * @param {number} AnimeId
  * @returns {Promise} `Anime Info Model`
  */
-function getInfoFromId(animeId) {
+function getInfoFromId(animeId, customFields) {
   return new Promise((resolve, reject) => {
     if (!animeId || typeof animeId !== 'number') return reject(new Error('[TAKI] Invalid ID'));
     if (!checkClientKey()) return reject(new Error('[TAKI] No MAL "CLIENT_KEY" provided'));
 
-    resolve(getInfo(animeId));
+    resolve(getInfo(animeId, customFields));
   });
 }
 
@@ -21,7 +21,7 @@ function getInfoFromId(animeId) {
  * @param {string} url 
  * @returns {Promise} `Anime Info Model`
  */
-function getInfoFromURL(url) {
+function getInfoFromURL(url, customFields) {
   return new Promise((resolve, reject) => {
     if (!url || typeof url !== 'string' || !url.toLowerCase().includes('https://myanimelist.net/')) return reject(new Error('[TAKI] Invalid URL'));
     if (!checkClientKey()) return reject(new Error('[TAKI] No MAL "CLIENT_KEY" provided'));
@@ -29,7 +29,7 @@ function getInfoFromURL(url) {
     const split = url.split('/');
     const animeId = split[4];
 
-    resolve(getInfo(animeId));
+    resolve(getInfo(animeId, customFields));
   });
 }
 
