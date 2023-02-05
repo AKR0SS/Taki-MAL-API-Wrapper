@@ -69,7 +69,7 @@ const CLIENT_KEY = process.env.CLIENT_KEY;
 taki.setClientKey(CLIENT_KEY);
 ```
 
-### getInfoFromId(animeId: number): Promise&lt;any>
+### getInfoFromId(animeId: any, fields?: string | undefined): Promise&lt;any>
 
 > Don't forget the Client Key!
 
@@ -83,6 +83,7 @@ taki.setClientKey(CLIENT_KEY);
 /**
  * Promises a json data object provided an anime's ID
  * @param {number} AnimeId
+ * @param {string} [fields]
  * @returns {Promise} `Anime Info Model`
  */
 async function data() { // where '27989' represents the anime Hibike! Euphonium
@@ -91,13 +92,14 @@ async function data() { // where '27989' represents the anime Hibike! Euphonium
 };
 ```
 
-### getInfoFromURL(url: string): Promise&lt;any>
+### function getInfoFromURL(url: string, fields?: string | undefined): Promise&lt;any>
 
 ```js
 /**
  * Promises a json data object provided an anime's MAL URL
  * - this is for lazy ppl like myself who don't want to parse an entered URL in my code
- * @param {string} url 
+ * @param {string} url
+ * @param {string} [fields]
  * @returns {Promise} `Anime Info Model`
  */
 async function data() {
@@ -145,12 +147,14 @@ async function data() {
 };
 ```
 
-### getSeason(season: any, year: any): Promise&lt;any>
+### getSeason(season: string, year: number, sort?: string | undefined): Promise&lt;any>
 
 ```js
 /**
  * Promises an array of json data object provided an anime's NAME
  * @param {string} season
+ * @param {number} year
+ * @param {string} [sort]
  * @return {Promise} `Anime Season Model`
  */
 async function data() {
@@ -167,12 +171,15 @@ async function data() {
 };
 ```
 
-### getUserWatchList(user: string): Promise&lt;any>
+### getUserWatchList(user: string, limit?: number | undefined, sort?: string | undefined, fields?: string | undefined): Promise&lt;any>
 
 ```js
 /**
  * Promises a json data object provided a username
  * @param {String} user
+ * @param {number} [limit]
+ * @param {string} [sort]
+ * @param {string} [fields]
  * @returns {Promise} `User Anime List Model`
  */
 async function data() {
