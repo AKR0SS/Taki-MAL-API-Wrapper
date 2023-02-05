@@ -1,4 +1,8 @@
 const { getClientKey } = require('../handlers/clientHandler');
+const path = require('path');
+
+const url = new URL('https://api.myanimelist.net');
+const pathParameters = '/v2/anime';
 
 /**
  * Fetches Anime json data from the MAL API for a list of best-match results.
@@ -7,7 +11,11 @@ const { getClientKey } = require('../handlers/clientHandler');
  */
 async function getSearch(name) {
   const CLIENT_KEY = getClientKey();
-  const request = await fetch(`https://api.myanimelist.net/v2/anime?q=${name}`, {
+
+  url.pathname = path.join(pathParameters);
+  url.searchParams.set('q', name);
+
+  const request = await fetch(url, {
     method: 'GET',
     credentials: 'include',
     headers: {
