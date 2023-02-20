@@ -18,19 +18,9 @@
 - [Gettings Started](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#gettings-started-)
   - [Creating your MAL Client ID](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#creating-your-mal-client-id)
   - [Installation](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#installation)
+- [Constructors](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#constructors-)
 - [Methods](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#methods-)
-  - [`setClientKey()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#setclientkeykey-string-void)
-  - [`getInfoFromId()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getinfofromidanimeid-number-promiseany)
-  - [`getInfoFromURL()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getinfofromurlurl-string-promiseany)
-  - [`search()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#searchname-string-promiseany)
-  - [`getInfoFromName()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getinfofromnamename-string-promiseany)
-  - [`getSeason()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getseasonseason-any-year-any-promiseany)
-  - [`getUserWatchList()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#getuserwatchlistuser-string-promiseany)
 - [Data Models](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#data-models-)
-  - [Anime Info Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime-info-model)
-  - [Anime Search Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime-search-model)
-  - [Anime Season Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime-season-model)
-  - [User Anime List Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#user-anime-list-model)
 <div align="center">
 
 ## Gettings Started </div>
@@ -41,7 +31,7 @@ This is incredibly simple, all you have to do is head [here](https://myanimelist
 
 Now to find your Client ID, again under the section header "Clients Accessing the MAL API", click "Edit" and your Client ID will be listed there for you to copy and do whatever you will with it.
 
- >A more detailed post can be found [here](https://myanimelist.net/forum/?topicid=1973077).
+> A more detailed post can be found [here](https://myanimelist.net/forum/?topicid=1973077).
 
 ### Installation
 
@@ -53,149 +43,125 @@ Now to find your Client ID, again under the section header "Clients Accessing th
 
 <div align="center">
 
+## Constructors </div>
+
+### Taki(nApiKey: string): Taki
+
+> Remeber, When interacting with anime data, you MUST set your client key!
+
+We will also assume that this call to the constructor exists in all of the rest of the provided examples.
+
+```js
+const Taki = require('../taki/index.js');
+require("dotenv").config();
+```
+
+<div align="center">
+
 ## Methods </div>
 
-### setClientKey(key: string): void
+### Taki.getAnimeInfo(param: string | number, fields?: string | undefined): Promise&lt;any>
 
-> Remeber, When interacting with anime data, you MUST set your client key or else an error will be thrown
-
-We will also assume that this call to setClientKey exists in all of the rest of the provided examples.
-
-```js
-const taki = require('taki');
-require("dotenv").config();
-
-const CLIENT_KEY = process.env.CLIENT_KEY;
-taki.setClientKey(CLIENT_KEY);
-```
-
-### getInfoFromId(animeId: any, fields?: string | undefined): Promise&lt;any>
-
-> Don't forget the Client Key!
-
-```js
-const taki = require('taki');
-require("dotenv").config();
-
-const CLIENT_KEY = process.env.CLIENT_KEY;
-taki.setClientKey(CLIENT_KEY);
-
-/**
- * Promises a json data object provided an anime's ID
- * @param {number} AnimeId
- * @param {string} [fields]
- * @returns {Promise} `Anime Info Model`
- */
-async function data() { // where '27989' represents the anime Hibike! Euphonium
-    const anime = await taki.getInfoFromId(27989);
-    console.log(anime);
-};
-```
-
-### function getInfoFromURL(url: string, fields?: string | undefined): Promise&lt;any>
+> Returns an [Anime Info Data Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime-info-model)
 
 ```js
 /**
- * Promises a json data object provided an anime's MAL URL
- * - this is for lazy ppl like myself who don't want to parse an entered URL in my code
- * @param {string} url
- * @param {string} [fields]
- * @returns {Promise} `Anime Info Model`
+ * Gets anime info of a provided ID or from a full-length MAL URL
+ * @param {string|number} param - Anime ID or MAL webpage URL
+ * @param {string} [fields] - Optional argument that if specified, by default will return
+ *     `{id, title, main_picture}`, but if not, returns ALL avaliable fields
+ * @returns {Promise} Anime Info Model Json Object
  */
-async function data() {
-    const anime = await taki.getInfoFromURL('https://myanimelist.net/anime/27989/Hibike_Euphonium');
-    console.log(anime.title);
-};
+
+// Don't forget the constructor!
+const taki = new Taki(CLIENT_KEY);
+const data = await taki.getAnimeInfo(animeID);
 ```
 
-### search(name: string, fields?: string | undefined): Promise&lt;any>
+### Taki.searchAnime(animeName: string): Promise&lt;any>
+
+> Returns an array of [Anime Info Data Models](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime-info-model)
 
 ```js
 /**
- * Promises an array of json data object provided an anime's NAME
- * @param {string} name
- * @param {string} [fields]
- * @return {Promise} `Anime Search Model`
+ * Searches for an anime on a best-match case
+ * @param {string} animeName
+ * @returns {Promise} Array of the Anime Info Model Json Data Object
  */
-async function data() {
-    let anime = await taki.search('Hibike! Euphonium');
-
-    for (let i = 0; i < anime.data.length; i++) {
-        console.log(anime.data[i].node.title);
-    }
-
-    // Since A list of results could be returned, our function has a pagination method
-    // as well that we can use to easily get the next page of results.
-    anime = await taki.search.next(anime);
-    console.log(anime.data[0].list_status);
-
-    anime = await taki.search.previous(anime);
-    console.log(anime.data[0].list_status.status);
-};
 ```
 
-### getInfoFromName(name: string, fields?: string | undefined): Promise&lt;any>
+### Taki.getSeason(nSeason: any, year: number): Promise&lt;any>
+
+> Returns
 
 ```js
 /**
- * Promises a json data object provided an anime's NAME
- * @param {string} name
- * @param {string} [fields]
- * @returns {Promise} `First Anime Search Model Data Element`
+ * Gets Anime from a specified season and year
+ * @param {string} season 
+ * @param {number} year 
+ * @returns {Promise} Anime Season Model Json Data Object
  */
-async function data() {
-    const anime = await taki.getInfoFromName('Hibike! Euphonium');
-    console.log(anime.node.title);
-};
 ```
 
-### getSeason(season: string, year: number, sort?: string | undefined): Promise&lt;any>
+### Taki.getMangaInfo(param: string | number, fields?: string | undefined): Promise&lt;any>
+
+> Returns
 
 ```js
 /**
- * Promises an array of json data object provided an anime's NAME
- * @param {string} season
- * @param {number} year
- * @param {string} [sort]
- * @return {Promise} `Anime Season Model`
+ * Gets manga info of a provided ID or from a full-length MAL URL
+ * @param {string|number} param  - Manga ID or MAL webpage URL
+ * @param {string} [fields] - Optional argument that if specified, by default will return
+ *     `{id, title, main_picture}`, but if not, returns ALL avaliable fields
+ * @returns {Promise} Manga Info Model Json Data Object
  */
-async function data() {
-    let anime = await taki.getSeason('spring', '2015');
-    console.log(anime.data[0].node.title);
-
-    // Since A list of results could be returned, our function has a pagination method
-    // as well that we can use to easily get the next page of results.
-    anime = await taki.search.next(anime);
-    console.log(anime.data[0].list_status);
-
-    anime = await taki.search.previous(anime);
-    console.log(anime.data[0].list_status.status);
-};
 ```
 
-### getUserWatchList(user: string, limit?: number | undefined, sort?: string | undefined, fields?: string | undefined): Promise&lt;any>
+### Taki.searchManga(mangaName: string): Promise&lt;any>
+
+> Returns
 
 ```js
 /**
- * Promises a json data object provided a username
- * @param {String} user
- * @param {number} [limit]
- * @param {string} [sort]
- * @param {string} [fields]
- * @returns {Promise} `User Anime List Model`
+ * Searches for a manga on a best-match case
+ * @param {string} mangaName 
+ * @returns {Promise} Array of the Manga Info Model Json Data Object
  */
-async function data() {
-    let anime = await taki.getUserWatchList('xAKROSSx');
-    console.log(anime.data[0].node.id);
+```
 
-    // Since A list of results could be returned, our function has a pagination method
-    // as well that we can use to easily get the next page of results.
-    anime = await taki.getUserWatchList.next(anime);
-    console.log(anime.data[0].list_status);
+### Taki.getMangaRanking(): Promise&lt;any>
 
-    anime = await taki.getUserWatchList.previous(anime);
-    console.log(anime.data[0].list_status.status);
-};
+> Returns
+
+```js
+/**
+ * Get the current top manga
+ * @returns {Promise} Manga Ranking Json Data Object
+ */
+```
+
+### Taki.getWatchList(user: string): Promise&lt;any>
+
+> Returns
+
+```js
+/**
+ * Retrieves a user's watched anime list
+ * @param {string} user 
+ * @returns {Promise} User Anime List Json Data Object
+ */
+```
+
+### Taki.getReadList(user: string): Promise&lt;any>
+
+> Returns
+
+```js
+/**
+ * Retrieves a user's read manga list
+ * @param {string} user 
+ * @returns {Promise} User Manga List Json Data Object
+ */
 ```
 
 <div align="center">
@@ -204,21 +170,25 @@ async function data() {
 
 To view a specific data model on the MAL API page, under "Responses", selecting "200 OK" to open the drop down, we can find all of the the accessable data provided by the default queries.
 
-### Anime Info Model
+### Anime
 
-<https://myanimelist.net/apiconfig/references/api/v2#operation/anime_anime_id_get>
+- [Anime Info Model](https://myanimelist.net/apiconfig/references/api/v2#operation/anime_anime_id_get)
 
-### Anime Search Model
+- [Anime Season Model](https://myanimelist.net/apiconfig/references/api/v2#operation/anime_season_year_season_get)
 
-<https://myanimelist.net/apiconfig/references/api/v2#operation/anime_get>
+- [Anime Ranking Model](https://myanimelist.net/apiconfig/references/api/v2#operation/anime_ranking_get)
 
-### Anime Season Model
+### Manga
 
-<https://myanimelist.net/apiconfig/references/api/v2#operation/anime_season_year_season_get>
+- [Manga Info Model](https://myanimelist.net/apiconfig/references/api/v2#operation/manga_manga_id_get)
 
-### User Anime List Model
+- [Manga Ranking Model](https://myanimelist.net/apiconfig/references/api/v2#operation/manga_ranking_get)
 
-<https://myanimelist.net/apiconfig/references/api/v2#operation/users_user_id_animelist_get>
+### User
+
+- [User Anime List Model](https://myanimelist.net/apiconfig/references/api/v2#operation/users_user_id_animelist_get)
+
+- [User Manga List Model](https://myanimelist.net/apiconfig/references/api/v2#operation/manga_get)
 
 <div align="center">
 
