@@ -19,8 +19,22 @@
   - [Creating your MAL Client ID](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#creating-your-mal-client-id)
   - [Installation](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#installation)
 - [Constructors](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#constructors-)
+  - [`Taki()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#takinapikey-string-taki)
 - [Methods](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#methods-)
+  - [`getAnimeInfo()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#takigetanimeinfoparam-string--number-fields-string--undefined-promiseany)
+  - [`searchAnime()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#takisearchanimeanimename-string-promiseany)
+  - [`getAnimeRanking()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#takigetanimeranking-promiseany)
+  - [`getSeason()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#takigetseasonnseason-any-year-number-promiseany)
+  - [`getMangaInfo()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#takigetmangainfoparam-string--number-fields-string--undefined-promiseany)
+  - [`searchManga()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#takisearchmangamanganame-string-promiseany)
+  - [`getMangaRanking()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#takigetmangaranking-promiseany)
+  - [`getWatchList()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#takigetwatchlistuser-string-promiseany)
+  - [`getReadList()`](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#takigetreadlistuser-string-promiseany)
 - [Data Models](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#data-models-)
+  - [Anime Data Models](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime)
+  - [Manga Data Models](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#manga)
+  - [User Data Models](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#user)
+
 <div align="center">
 
 ## Gettings Started </div>
@@ -80,7 +94,7 @@ const data = await taki.getAnimeInfo(animeID);
 
 ### Taki.searchAnime(animeName: string): Promise&lt;any>
 
-> Returns an array of [Anime Info Data Models](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime-info-model)
+> Returns an array of the [Anime Info Data Models](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime)
 
 ```js
 /**
@@ -90,9 +104,20 @@ const data = await taki.getAnimeInfo(animeID);
  */
 ```
 
+### Taki.getAnimeRanking(): Promise&lt;any>
+
+> Returns an [Anime Ranking Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime)
+
+```js
+/**
+ * Get the current top anime
+ * @returns  {Promise} Anime Ranking Json Data Object
+ */
+```
+
 ### Taki.getSeason(nSeason: any, year: number): Promise&lt;any>
 
-> Returns
+> Returns an [Anime Season Data Models](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime)
 
 ```js
 /**
@@ -105,7 +130,7 @@ const data = await taki.getAnimeInfo(animeID);
 
 ### Taki.getMangaInfo(param: string | number, fields?: string | undefined): Promise&lt;any>
 
-> Returns
+> Returns a [Manga Info Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#manga)
 
 ```js
 /**
@@ -119,7 +144,7 @@ const data = await taki.getAnimeInfo(animeID);
 
 ### Taki.searchManga(mangaName: string): Promise&lt;any>
 
-> Returns
+> Returns an array of the [Manga Info Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#manga)
 
 ```js
 /**
@@ -131,7 +156,7 @@ const data = await taki.getAnimeInfo(animeID);
 
 ### Taki.getMangaRanking(): Promise&lt;any>
 
-> Returns
+> Returns a [Manga Ranking Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#manga)
 
 ```js
 /**
@@ -142,7 +167,7 @@ const data = await taki.getAnimeInfo(animeID);
 
 ### Taki.getWatchList(user: string): Promise&lt;any>
 
-> Returns
+> Returns a [User's Anime List Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#user)
 
 ```js
 /**
@@ -154,7 +179,7 @@ const data = await taki.getAnimeInfo(animeID);
 
 ### Taki.getReadList(user: string): Promise&lt;any>
 
-> Returns
+> Returns a [User's Manga List Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#user)
 
 ```js
 /**
