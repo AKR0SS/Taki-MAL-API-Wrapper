@@ -68,6 +68,9 @@ We will also assume that this call to the constructor exists in all of the rest 
 ```js
 const Taki = require('../taki/index.js');
 require("dotenv").config();
+
+// Honestly you could just copy/paste it lol
+new Taki(process.env.CLIENT_KEY);
 ```
 
 <div align="center">
@@ -86,10 +89,6 @@ require("dotenv").config();
  *     `{id, title, main_picture}`, but if not, returns ALL avaliable fields
  * @returns {Promise} Anime Info Model Json Object
  */
-
-// Don't forget the constructor!
-const taki = new Taki(CLIENT_KEY);
-const data = await taki.getAnimeInfo(animeID);
 ```
 
 ### Taki.searchAnime(animeName: string): Promise&lt;any>
