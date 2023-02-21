@@ -1,4 +1,10 @@
 <div align="center">
+  
+ # Valid for release 0.3.0 <
+  
+</div>
+
+<div align="center">
 <img src="https://i.imgur.com/RJEAPvN.png" width=420>
 
 [![Version][version-shield]][repo-url]
