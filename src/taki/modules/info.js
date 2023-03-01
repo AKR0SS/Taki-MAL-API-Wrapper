@@ -6,7 +6,7 @@ const MANGA_FIELDS = 'id,title,main_picture,alternative_titles,start_date,end_da
 
 function getAnimeInfoFromId(baseUrl, apiKey, animeID, fields = ANIME_FIELDS) {
   return new Promise((resolve, reject) => {
-    if ((isNaN(animeID) || animeID < 1)) return reject(new Error('[TAKI] Invalid animeID'));
+    if ((Number.isNaN(animeID) || animeID < 1)) return reject(new Error('[TAKI] Invalid animeID'));
 
     baseUrl.pathname += path.join('anime', animeID.toString());
     baseUrl.searchParams.set('fields', fields);
@@ -22,7 +22,7 @@ function getAnimeInfoFromURL(baseUrl, apiKey, url, fields) {
     const split = url.split('/');
     const animeId = split[4];
 
-    if (isNaN(animeId)) return reject(new Error('[TAKI] Unable to parse a valid link'));
+    if (Number.isNaN(animeId)) return reject(new Error('[TAKI] Unable to parse a valid link'));
 
     resolve(getAnimeInfoFromId(baseUrl, apiKey, animeId, fields));
   });
@@ -30,7 +30,7 @@ function getAnimeInfoFromURL(baseUrl, apiKey, url, fields) {
 
 function getMangaInfoFromId(baseUrl, apiKey, mangaID, fields = MANGA_FIELDS) {
   return new Promise((resolve, reject) => {
-    if ((isNaN(mangaID) || mangaID < 1)) return reject(new Error('[TAKI] Invalid mangaID'));
+    if ((Number.isNaN(mangaID) || mangaID < 1)) return reject(new Error('[TAKI] Invalid mangaID'));
 
     baseUrl.pathname += path.join('manga', mangaID.toString());
     baseUrl.searchParams.set('fields', fields);
