@@ -12,9 +12,10 @@ const mangaID = 45275;
 
 test('Get a user\'s watch list', async () => {
   const taki = new Taki(CLIENT_KEY);
-  const data = await taki.getWatchList(USER);
+  const data = await taki.getWatchList(USER, 4);
 
   expect(data.data[0].node.id).toBe(animeID);
+  expect(data.data.length).toBe(4);
 });
 
 test('get a user\'s read list', async () => {
