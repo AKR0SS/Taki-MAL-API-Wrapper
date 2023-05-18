@@ -1,8 +1,9 @@
 const { getAnimeInfoFromId, getAnimeInfoFromURL, getMangaInfoFromId, getMangaInfoFromURL } = require('./modules/info.js');
 const { getUserAnimeList, getUserMangaList } = require('./modules/user.js');
 const { animeSearch, mangaSearch } = require('./modules/search.js');
-const { season } = require('./modules/season.js');
+const { animeSeason } = require('./modules/season.js');
 const { animeRank, mangaRank } = require('./modules/ranking.js');
+const { getPagination } = require('./modules/pagination.js');
 
 module.exports = class Taki {
   /**
@@ -37,28 +38,32 @@ module.exports = class Taki {
   /**
    * Searches for an anime on a best-match case
    * @param {string} animeName
+   * @param {number} [limit=10] limitvalue
    * @returns {Promise} Array of the Anime Info Model Json Data Object
    */
-  async searchAnime(animeName) {
-    return animeSearch(this.baseUrl, this.apiKey, animeName);
+  async searchAnime(animeName, limit = 10) {
+    return animeSearch(this.baseUrl, this.apiKey, animeName, limit);
   }
 
   /**
    * Gets Anime from a specified season and year
    * @param {string} season 
    * @param {number} year 
+   * @param {number} [limit=10] limit
    * @returns {Promise} Anime Season Model Json Data Object
    */
-  async getSeason(nSeason, year) {
-    return season(this.baseUrl, this.apiKey, nSeason, year);
+  async getSeason(season, year, limit = 10) {
+    return animeSeason(this.baseUrl, this.apiKey, season, year, limit);
   }
 
   /**
    * Get the current top anime
-   * @returns  {Promise} Anime Ranking Json Data Object
+   * @param {string} [rankingType='all'] rankingType
+   * @param {number} [limit=10] limit
+   * @returns {Promise} Anime Ranking Json Data Object
    */
-  async getAnimeRanking() {
-    return animeRank(this.baseUrl, this.apiKey);
+  async getAnimeRanking(rankingType = 'all', limit = 10) {
+    return animeRank(this.baseUrl, this.apiKey, rankingType, limit);
   }
 
   //* MANGA
@@ -84,29 +89,35 @@ module.exports = class Taki {
   /**
    * Searches for a manga on a best-match case
    * @param {string} mangaName 
+   * @param {number} [limit=10] limit
    * @returns {Promise} Array of the Manga Info Model Json Data Object
    */
-  async searchManga(mangaName) {
-    return mangaSearch(this.baseUrl, this.apiKey, mangaName);
+  async searchManga(mangaName, limit = 10) {
+    return mangaSearch(this.baseUrl, this.apiKey, mangaName, limit);
   }
 
   /**
    * Get the current top manga
+   * @param {string} [rankingType='all'] rankingType
+   * @param {number} [limit=10] limit
    * @returns {Promise} Manga Ranking Json Data Object
    */
-  async getMangaRanking() {
-    return mangaRank(this.baseUrl, this.apiKey);
+  async getMangaRanking(rankingType = 'all', limit = 10) {
+    return mangaRank(this.baseUrl, this.apiKey, rankingType, limit);
   }
 
   //* USER
 
   /**
    * Retrieves a user's watched anime list
-   * @param {string} user 
+   * @param {string} user
+   * @param {number} [limit=10] limit
+   * @param {string} [status='watching'] status
+   * @param {string} [sort='list_score'] sort
    * @returns {Promise} User Anime List Json Data Object
    */
-  async getWatchList(user) {
-    return getUserAnimeList(this.baseUrl, this.apiKey, user);
+  async getWatchList(user,  limit = 10, status = 'watching', sort = 'list_score') {
+    return getUserAnimeList(this.baseUrl, this.apiKey, user, limit, status, sort);
   }
 
   /**
@@ -119,4 +130,17 @@ module.exports = class Taki {
   }
 
   //? FORUM
+  
+
+  //* MISC
+
+  /**
+   * 
+   * @param {string} paginationURI
+   * @returns 
+   */
+  async paginate(paginationURI) {
+    const URI = new URL(paginationURI);
+    return getPagination(URI, this.apiKey);
+  }
 }
