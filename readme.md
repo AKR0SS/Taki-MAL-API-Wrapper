@@ -96,9 +96,10 @@ new Taki(process.env.CLIENT_KEY);
 > Returns an array of the [Anime Info Data Models](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#anime)
 
 ```js
-/**
+ /**
  * Searches for an anime on a best-match case
  * @param {string} animeName
+ * @param {number} [limit=10] limitvalue
  * @returns {Promise} Array of the Anime Info Model Json Data Object
  */
 ```
@@ -110,7 +111,9 @@ new Taki(process.env.CLIENT_KEY);
 ```js
 /**
  * Get the current top anime
- * @returns  {Promise} Anime Ranking Json Data Object
+ * @param {string} [rankingType='all'] rankingType
+ * @param {number} [limit=10] limit
+ * @returns {Promise} Anime Ranking Json Data Object
  */
 ```
 
@@ -123,6 +126,7 @@ new Taki(process.env.CLIENT_KEY);
  * Gets Anime from a specified season and year
  * @param {string} season 
  * @param {number} year 
+ * @param {number} [limit=10] limit
  * @returns {Promise} Anime Season Model Json Data Object
  */
 ```
@@ -149,6 +153,7 @@ new Taki(process.env.CLIENT_KEY);
 /**
  * Searches for a manga on a best-match case
  * @param {string} mangaName 
+ * @param {number} [limit=10] limit
  * @returns {Promise} Array of the Manga Info Model Json Data Object
  */
 ```
@@ -160,6 +165,8 @@ new Taki(process.env.CLIENT_KEY);
 ```js
 /**
  * Get the current top manga
+ * @param {string} [rankingType='all'] rankingType
+ * @param {number} [limit=10] limit
  * @returns {Promise} Manga Ranking Json Data Object
  */
 ```
@@ -171,7 +178,10 @@ new Taki(process.env.CLIENT_KEY);
 ```js
 /**
  * Retrieves a user's watched anime list
- * @param {string} user 
+ * @param {string} user
+ * @param {number} [limit=10] limit
+ * @param {string} [status='watching'] status
+ * @param {string} [sort='list_score'] sort
  * @returns {Promise} User Anime List Json Data Object
  */
 ```
@@ -179,6 +189,8 @@ new Taki(process.env.CLIENT_KEY);
 ### Taki.getReadList(user: string): Promise&lt;any>
 
 > Returns a [User's Manga List Model](https://github.com/AKR0SS/Taki-MAL-API-Wrapper#user)
+
+#### Will support custom arguments soon
 
 ```js
 /**
