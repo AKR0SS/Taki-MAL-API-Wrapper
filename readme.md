@@ -238,5 +238,5 @@ Copyright (c) 2023 Akross
 [version-shield]: https://img.shields.io/github/v/release/akr0ss/Taki-MAL-API-Wrapper?include_prereleases
 [code-size-shield]: https://img.shields.io/github/languages/code-size/akr0ss/Taki-MAL-API-Wrapper
 [issues-sheild]: https://img.shields.io/github/issues/akr0ss/Taki-MAL-API-Wrapper
-[coverage-sield]: https://img.shields.io/badge/Code%20Coverage-100%25-c03b13
+[coverage-sield]: https://img.shields.io/badge/Code%20Coverage-92.08%25-c03b13
 [license-shield]: https://img.shields.io/github/license/akr0ss/Taki-MAL-API-Wrapper
